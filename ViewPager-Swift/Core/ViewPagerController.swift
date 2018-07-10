@@ -50,7 +50,13 @@ public class ViewPagerController:UIViewController {
     fileprivate var tabsViewList = [ViewPagerTabView]()
     
     fileprivate var isIndicatorAdded = false
-    fileprivate var currentPageIndex = 0
+    var currentPageIndex = 0
+    var currentViewController: UIViewController? {
+        guard currentPageIndex < dataSource.numberOfPages(), currentPageIndex >= 0 else {
+            return nil
+        }
+        return dataSource.viewControllerAtPosition(position: currentPageIndex)
+    }
     
     public var options:ViewPagerOptions!
     
